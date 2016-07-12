@@ -33,19 +33,34 @@ class Drummer(Musician):
         print("One. Two. Three. Four.")
         
 class Band(object):
-    members = []
+    def __init__(self):
+        self.members = []
     
-    def hire(musician):
-        members.append(musician)
+    def hire(self, musician):
+        self.members.append(musician)
         print(str(musician) + " is now hired.")
     
-    def fire(musician):
-        if musician in members:
-            list.remove(musician)
+    def fire(self, musician):
+        if musician in self.members:
+            self.members.remove(musician)
             print(str(musician) + " is now fired.")
     
-    def playsolos():
-        if any(isinstance(x, Drummer) for x in list_of_stuff):
-            x.counttofour()
-        for member in members:
+    def playsolos(self):
+        for member in self.members:
+            #STUDY isinstance function
+            if isinstance(member, Drummer):
+                member.counttofour()
+        for member in self.members:
             member.solo(4)
+            
+if __name__ == '__main__':
+    band = Band()
+    bob = Drummer()
+    band.hire(bob)
+    jack = Bassist()
+    joe = Guitarist()
+    band.hire(jack)
+    band.hire(joe)
+    band.playsolos()
+    band.fire(bob)
+    
